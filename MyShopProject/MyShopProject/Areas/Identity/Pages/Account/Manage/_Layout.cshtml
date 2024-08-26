@@ -1,0 +1,45 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <h4 class="text-center">Manage your account</h4>
+
+        <div>
+            <hr />
+            <div class="row">
+                <div class="col-md-3">
+                    <partial name="_ManageNav" />
+                </div>
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+
+<style>
+    /* Custom button styling */
+    .btn-custom {
+        background-color: sienna;
+        color: white;
+    }
+
+    /* Center the content */
+    .min-vh-100 {
+        min-height: 100vh;
+    }
+</style>

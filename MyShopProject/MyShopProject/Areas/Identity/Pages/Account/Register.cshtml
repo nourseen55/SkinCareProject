@@ -1,0 +1,88 @@
+﻿@page
+@using MyShopProject.Utilities
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="py-5 d-flex align-items-center min-vh-100">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4">
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <h2>Create a new account</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Email">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Name" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Name">Name</label>
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Address" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Address">Address</label>
+                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.City" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.City">City</label>
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.PhoneNumber">Phone Number</label>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    @if (User.IsInRole(SD.AdminRole))
+                    {
+                        <input type="radio" value="@SD.AdminRole" name="RadioRole" />
+                        @SD.AdminRole
+                        <input type="radio" value="@SD.EditorRole" name="RadioRole" />
+                        @SD.EditorRole
+                        <input type="radio" value="@SD.CustomerRole" name="RadioRole" />
+                        @SD.CustomerRole
+                    }
+                    @if (User.IsInRole(SD.AdminRole))
+                    {
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="background-color: sienna; color: white;">
+                             Create New User</button>
+                    }
+                    else
+                    {
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="background-color: sienna; color: white;">
+                        Register
+                        </button>
+                    }
+                </form>
+            </div>
+            <div class="col-md-6">
+                <section>
+                    <div class="imglogin text-center">
+                        <video width="640" height="360" autoplay>
+                            <source src="~/img/Account Login.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

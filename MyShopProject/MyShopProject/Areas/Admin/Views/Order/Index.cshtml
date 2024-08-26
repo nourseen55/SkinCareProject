@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "View";
+    ViewBag.PageTitle = "Order Management";
+    ViewBag.CardTitle = "View Orders";
+    Layout = "_MyLayout";
+}
+
+
+<table id="mytable" class="table table-hover" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Total Price</th>
+            <th>Order Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/orders.js"></script>
+}
+
+<style>
+    #mytable th, #mytable td {
+        color: black
+    }
+
+    .dataTables_wrapper .dataTables_filter label {
+        color: white;
+    }
+
+    .dataTables_wrapper .dataTables_filter input::placeholder {
+        color: white;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        color: white;
+        background-color: #555;
+        border: 1px solid #666;
+        padding: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+        color: white;
+        font-size: 14px;
+    }
+
+
+    .dataTables_wrapper .dataTables_length label {
+        color: white;
+        font-size: 14px;
+    }
+
+    .dataTables_wrapper .dataTables_length select {
+        color: white;
+        background-color: #555;
+        border: 1px solid #666;
+        padding: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        color: white !important;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+            color: white !important;
+        }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background-color: #555 !important;
+        border: 1px solid #666 !important;
+        padding: 5px 10px !important;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #777 !important;
+        }
+
+</style>

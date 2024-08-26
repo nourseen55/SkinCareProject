@@ -1,0 +1,67 @@
+﻿@model MyShopProject.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Create";
+    ViewBag.PageTitle = "Product Management";
+    ViewBag.CardTitle = "Create Product";
+    Layout = "_MyLayout";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Product.Img" />
+            <div class="form-group">
+                <label asp-for="Product.Name" class="control-label"></label>
+                <input asp-for="Product.Name" class="form-control" style="width: 300px !important;" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Description" class="control-label"></label>
+                <input asp-for="Product.Description" class="form-control" style="width: 300px !important;" />
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" style="width: 300px !important;" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Img" class="control-label"></label>
+                <input onchange="fillimg(event)" ; type="file" id="imgfile" class="form-control" name="file" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.CategoryId" class="control-label"></label>
+                <select asp-for="Product.CategoryId" class="form-control" asp-items="Model.CategoryList">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a style="color:white" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="container">
+            <img id="ImagePrevew" width="300" height="300" />
+        </div>
+    </div>
+
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+
+        <script>
+            var fillimg = function (event) {
+                var imgholder = document.getElementById("ImagePrevew");
+                imgholder.src = URL.createObjectURL(event.target.files[0]);
+            }
+        </script>
+    }

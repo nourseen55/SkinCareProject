@@ -1,0 +1,136 @@
+﻿@model ShoppingCardVM
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Combined Card with Two Sections Side by Side -->
+        <div class="col-md-8">
+            <div class="row combined-card">
+                <!-- First Section: Shopping Cart -->
+                <div class="col-md-7 shopping-cart-section">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.ShoppingCarts)
+                    {
+                        <div class="row border-top border-bottom">
+                            <div class="row main align-items-center">
+                            <div class="col-3"><img class="img-fluid" src="~/@item.Product.Img" alt="Product"></div>
+                            <div class="col">
+                                <div class="row text-muted">@item.Product.Name</div>
+                            </div>
+                            <div style="width:70px;margin-right:20px" class=" border">
+                                    <a style="text-decoration:none;color:black" asp-action="Minus" asp-route-cardid="@item.Id">-</a>
+                                    @item.Count
+                                    <a style="text-decoration:none;color:black" asp-action="Plus" asp-route-cardid="@item.Id">+</a>
+                            </div>
+                            <div class="col">&euro; @item.Product.Price
+                                
+                                <a style="text-decoration:none" asp-action="remove" asp-route-cardid="@item.Id">
+                                        <span class="close">&#10005;</span>
+
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>}
+                    <!-- Additional Product Rows Omitted for Brevity -->
+                    <br />
+                    <div class="back-to-shop"><a href="/home/index">&leftarrow;
+                        <span class="text-muted">Back to shop</span></a>
+                            
+                        </div>
+                </div>
+                    
+                 
+
+                <!-- Second Section: Summary -->
+                <div class="col-md-5 summary-section d-flex flex-column justify-content-center align-items-center">
+                    <div><h5><b>Summary</b></h5></div>
+                    <hr style="width: 100%;">
+                    <div class="row w-100">
+                        @foreach (var item in Model.ShoppingCarts)
+                        {
+                            <div class="col-12 d-flex justify-content-between">
+                                <span style="margin:10px">@item.Product.Name</span>
+                                <span style="margin-left:20px;margin-top:10px;margin-bottom:10px">@(@item.Product.Price * item.Count)</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="row w-100" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;margin-top:10px">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">&euro; @Model.totalcarts</div>
+                    </div>
+                    <br />
+                    <a style="margin:10px" asp-action="Summary" class="btn btn-checkout">CHECKOUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles -->
+<style>
+    .combined-card {
+        display: flex;
+        flex-direction: row;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
+    }
+
+    .shopping-cart-section {
+        background-color: #fff;
+        padding: 20px;
+        border-right: 1px solid #ddd;
+    }
+
+    .summary-section {
+        background-color: linen; /* Beige Pastel */
+        padding: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .btn-checkout {
+        background-color:sienna;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        .btn-checkout:hover {
+            background-color: #444;
+        }
+
+    .back-to-shop a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+
+        .back-to-shop a:hover {
+            text-decoration: underline;
+        }
+
+    .close {
+        cursor: pointer;
+        color: red;
+        font-size: 18px;
+    }
+
+    .title, .summary-section h5, .row {
+        margin: 0;
+        padding: 10px 0;
+    }
+</style>
